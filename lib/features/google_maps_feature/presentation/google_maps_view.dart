@@ -27,7 +27,11 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
         alignment: Alignment.bottomCenter,
         children: [
           GoogleMap(
-            onMapCreated: (controller) => googleMapController = controller,
+            mapType: MapType.normal,
+            onMapCreated: (controller) {
+              googleMapController = controller;
+              initMapStyle();
+            },
             cameraTargetBounds: CameraTargetBounds(
               LatLngBounds(
                 southwest: LatLng(29.54731017799475, 30.51146816015295),
@@ -40,7 +44,7 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
             onPressed: () {
               CameraPosition newCameraPosition = CameraPosition(
                 target: LatLng(30.13762295429833, 31.272014316994024),
-                zoom: 12.0,
+                zoom: 19.0,
               );
               googleMapController.animateCamera(
                 CameraUpdate.newCameraPosition(newCameraPosition),
@@ -79,5 +83,12 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
         ],
       ),
     );
+  }
+
+  Future<void> initMapStyle() async {
+    String retroMapStyle = await DefaultAssetBundle.of(context).loadString(
+      'assets/map_styles/retro_map_style.json',
+    ); //to load the json file in String variable
+    await googleMapController.setMapStyle(retroMapStyle);
   }
 }
