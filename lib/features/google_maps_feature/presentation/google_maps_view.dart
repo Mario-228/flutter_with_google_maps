@@ -30,6 +30,7 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
         alignment: Alignment.bottomCenter,
         children: [
           GoogleMap(
+            zoomControlsEnabled: false,
             markers: markers,
             mapType: MapType.normal,
             onMapCreated: (controller) {
