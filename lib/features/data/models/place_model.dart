@@ -11,17 +11,17 @@ class PlaceModel {
 List<PlaceModel> places = [
   PlaceModel(
     id: '1',
-    location: LatLng(30.13762295429833, 31.272014316994024),
+    location: LatLng(30.112435840435566, 31.32374380537395),
     name: 'First Place',
   ),
   PlaceModel(
     id: '2',
-    location: LatLng(30.13762295429833, 32.272014316994024),
+    location: LatLng(30.10530785248985, 31.315418228589493),
     name: 'Second Place',
   ),
   PlaceModel(
     id: '3',
-    location: LatLng(30.13762295429833, 33.272014316994024),
+    location: LatLng(30.11807846618015, 31.30271528669155),
     name: 'Third Place',
   ),
 ];
