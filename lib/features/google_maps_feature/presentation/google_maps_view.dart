@@ -16,7 +16,7 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
   @override
   void initState() {
     initialCameraPosition = CameraPosition(
-      target: LatLng(30.13762295429833, 31.272014316994024),
+      target: LatLng(30.112435840435566, 31.32374380537395),
       zoom: 12.0,
     );
     initMarkers();
@@ -96,16 +96,24 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
     await googleMapController.setMapStyle(retroMapStyle);
   }
 
-  void initMarkers() {
+  void initMarkers() async {
+    BitmapDescriptor markerIcon = await BitmapDescriptor.asset(
+      ImageConfiguration(),
+      "assets/images/maps-and-flags.png",
+      height: 30.0,
+      width: 30.0,
+    );
     markers =
         places
             .map(
               (place) => Marker(
+                icon: markerIcon,
                 markerId: MarkerId(place.id),
                 position: place.location,
                 infoWindow: InfoWindow(title: place.name),
               ),
             )
             .toSet();
+    setState(() {});
   }
 }
