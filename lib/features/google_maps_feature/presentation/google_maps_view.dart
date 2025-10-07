@@ -11,13 +11,15 @@ class GoogleMapsWidget extends StatefulWidget {
 class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
   late GoogleMapController googleMapController;
   late CameraPosition initialCameraPosition;
+  Set<Marker> markers = {};
   @override
   void initState() {
-    super.initState();
     initialCameraPosition = CameraPosition(
       target: LatLng(30.13762295429833, 31.272014316994024),
       zoom: 12.0,
     );
+    initMarkers();
+    super.initState();
   }
 
   @override
@@ -27,6 +29,7 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
         alignment: Alignment.bottomCenter,
         children: [
           GoogleMap(
+            markers: markers,
             mapType: MapType.normal,
             onMapCreated: (controller) {
               googleMapController = controller;
@@ -90,5 +93,13 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
       'assets/map_styles/retro_map_style.json',
     ); //to load the json file in String variable
     await googleMapController.setMapStyle(retroMapStyle);
+  }
+
+  void initMarkers() {
+    Marker marker = Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(30.13762295429833, 31.272014316994024),
+    );
+    markers.add(marker);
   }
 }
